@@ -27,3 +27,7 @@ pw: ppc
 
 Have fun ;)                                                                                   
 undeaD_D (CustomCraftDev)
+
+
+PS:
+https://forums.bukkit.org/threads/tutorial-creating-configurable-commands-without-plugin-yml.242113/
