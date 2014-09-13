@@ -9,7 +9,7 @@ for: Lil_wise_guy
 ======
 
 FINISHED ...
-
+view updates in config.yml and feel free to pm me if you have any questions ...
 ======
 
 download: 
