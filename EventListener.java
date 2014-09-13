@@ -4,23 +4,14 @@ import org.bukkit.event.Listener;
 
 public class EventListener implements Listener{
 
-	perplayercommand plugin;
+	Perplayercommand plugin;
 	
 	/*
 	 *  constructor EventListener
 	 *  @params perplayercommand plugin
 	 */
-	public EventListener(perplayercommand plugin) {
+	public EventListener(Perplayercommand plugin) {
 		this.plugin = plugin;
-	}
-			
-	
-	
-	
-	
-	
-	
-	
-	
+	}			
 	
 }
