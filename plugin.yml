@@ -1,10 +1,14 @@
 name: PerPlayerCommand
-main: perplayercommand.perplayercommand
+main: perplayercommand.Perplayercommand
 description: Requested plugin by undeaD_D
 version: 1.0
 author: DieFriiks
 authors: [DieFriiks, CustomCraftDev, undeaD_D]
 databse: false
+commands:
+  ppc:
+    usage: /<command> <reload/disable/reset>
+    description: reload/reset/disable ppc plugin
 permissions:
   ppc.*:
     description: grants every permission from ppc
