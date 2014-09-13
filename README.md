@@ -8,9 +8,12 @@ for: Lil_wise_guy
 
 ======
 TODO:
- - coding
+ - EventListener.java
+ - testing the plugin
+ - upload file
 
 FINISHED:
+ - PerPlayerCommands.java
  - config.yml
  - plugin.yml
 
