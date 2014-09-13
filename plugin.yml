@@ -1,0 +1,23 @@
+name: PerPlayerCommand
+main: perplayercommand.perplayercommand
+description: Requested plugin by undeaD_D
+version: 1.0
+author: DieFriiks
+authors: [DieFriiks, CustomCraftDev, undeaD_D]
+databse: false
+permissions:
+  ppc.*:
+    description: grants every permission from ppc
+    children:
+      ppc.use: true
+      ppc.reload: true
+      ppc.reset: true
+      ppc.disable: true
+  ppc.use:
+    description: use the custom command
+  ppc.reload:
+    description: reload ppc at runtime
+  ppc.reset:
+    description: reset ppc config at runtime and reload after
+  ppc.disable:
+    description: disables ppc at runtime  
