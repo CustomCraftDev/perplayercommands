@@ -15,7 +15,7 @@ import org.bukkit.plugin.java.JavaPlugin;
  * @category PerPlayerCommands plugin
  * @version 1.0
  */
-public class perplayercommand extends JavaPlugin {
+public class Perplayercommand extends JavaPlugin {
 	
     FileConfiguration config;
     boolean debug;
@@ -28,7 +28,6 @@ public class perplayercommand extends JavaPlugin {
      * on Plugin enable
      */
 	public void onEnable() {
-		
 		loadConfig();
     	say("Config loaded");   	
     	
@@ -44,7 +43,13 @@ public class perplayercommand extends JavaPlugin {
 		// nothing to save here :(
 	}
 
-	
+	/**
+     * on Command
+     * @param sender - command sender
+     * @param cmd - command
+     * @param alias
+     * @return true or false
+     */
 	public boolean onCommand(CommandSender sender, Command cmd, String alias, String[] args) {
 		if ((sender instanceof Player)) {
 			Player p = (Player)sender;
