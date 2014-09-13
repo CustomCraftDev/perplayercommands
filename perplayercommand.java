@@ -12,7 +12,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 /**
  * @author DieFriiks / CustomCraftDev / undeaD_D
- * @category KillerArrows plugin
+ * @category PerPlayerCommands plugin
  * @version 1.0
  */
 public class perplayercommand extends JavaPlugin {
