@@ -1,0 +1,16 @@
+# @author DieFriiks / CustomCraftDev / undeaD_D
+# @link www.custom-craft.de
+# @github https://github.com/CustomCraftDev/perplayercommands
+
+custom-cmd: 'ppc'
+default-msg: 'testing the default message'
+
+var1: '%playername% gets replaced with the name of the player'
+var2: '%world% gets replaced with the world the player is currently in'
+var3: '%nextline%' indicates a new line in the chat
+var4: '%no%' indicates that there should be nothing to be displayed 
+
+players:
+  undeaD_D: 'this is a test'
+  Notch: 'dont sell minecraft -.-'
+  Steve: 'nope'
