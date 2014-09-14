@@ -2,19 +2,21 @@
 # @link www.custom-craft.de
 # @github https://github.com/CustomCraftDev/perplayercommands
 
-debug: true
-custom-cmd: testing
-msg-color: YELLOW
-default-msg: the default message
-nopermission-msg: You shall not pass !!!
-nopermission-color: RED
+debug: false
 debug-color: RED
+
+custom-cmd: 'testing'
+default-msg: '&4the &adefault &bmessage &3is &fnow &5colored'
+nopermission-msg: '&CYou shall not pass !!!'
+
 infoonly:
+  var0: 'colorcodes: https://github.com/CustomCraftDev/perplayercommands'
   var1: '%playername% gets replaced with the name of the player'
   var2: '%world% gets replaced with the world the player is currently in'
   var3: '%nextline% indicates a new line in the chat'
   var5: '%no% indicates that there should be nothing to be displayed'
+  
 players:
-  undeaD_D: '[WARNING]%nextline%Developer incoming !!!%nextline%[WARNING]'
-  Notch: why you sell minecraft -.-
-  Steve: FAKER !!!
+  undeaD_D: '&C[WARNING]%nextline%&LDeveloper incoming !!!%nextline%[WARNING]'
+  Notch: 'why you sell minecraft -.-'
+  Steve: 'FAKER !!!'
