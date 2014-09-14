@@ -8,8 +8,12 @@ for: Lil_wise_guy
 
 ======
 
-view updates in config.yml and feel free to pm me if you have any questions ...
-FINISHED ...
+Updated:
+ - fixed reloading ...
+ - added color support for messages/nopermissionmessage
+ - now supporting commands from console
+ - to reload ppc config simply use /ppc reload, you dont have to reload the whole server :/
+
 ======
 
 download: 
