@@ -27,9 +27,8 @@ public class Perplayercommand extends JavaPlugin implements Listener{
     String cmd;
     String defaultmsg;
 	String nopermission_msg;
-	ChatColor nopermission_color;
-	ChatColor msg_color;
 	ChatColor debug_color;
+	boolean isplayer;
 
 	
 	/**
@@ -48,9 +47,11 @@ public class Perplayercommand extends JavaPlugin implements Listener{
      * on Plugin disable
      */
 	public void onDisable() {
-		// nothing to save here :(
+		reloadConfig();
+		saveConfig();
 	}
 
+	
 	/**
      * on Command
      * @param sender - command sender
@@ -59,28 +60,40 @@ public class Perplayercommand extends JavaPlugin implements Listener{
      * @return true or false
      */
 	public boolean onCommand(CommandSender sender, Command cmd, String alias, String[] args) {
+		isplayer = false;
+		Player p = null;
+		
 		if ((sender instanceof Player)) {
-			Player p = (Player)sender;
-
+			p = (Player)sender;
+			isplayer = true;
+		}
 			if(cmd.getName().equalsIgnoreCase("ppc") && args.length != 0){
-				
+								
 				// disable
-				if(args[0].equalsIgnoreCase("disable")){ 
-					if(p.hasPermission("ppc.disable")){
+				if(args[0].equalsIgnoreCase("disable")){
+					if(isplayer){
+						if(p.hasPermission("ppc.disable")){
 							this.setEnabled(false);
 							p.sendMessage(debug_color + "[PerPlayerCommands] was disabled");
 							say("disabled by " + p.getName());
 						return true;
 					}
+						else{
+							p.sendMessage(nopermission_msg);
+							return true;
+						}
+					}
 					else{
-						p.sendMessage(nopermission_color + nopermission_msg);
+							this.setEnabled(false);
+						System.out.println("[PerPlayerCommands] was disabled");
 						return true;
 					}
 				}
 				
 				// reset
 				if(args[0].equalsIgnoreCase("reset")){
-					if(p.hasPermission("ppc.reset")){
+					if(isplayer){
+						if(p.hasPermission("ppc.reset")){
 						    File configFile = new File(getDataFolder(), "config.yml");
 						    configFile.delete();
 						    saveDefaultConfig();
@@ -89,38 +102,49 @@ public class Perplayercommand extends JavaPlugin implements Listener{
 							p.sendMessage(debug_color + "[PerPlayerCommands] was reloaded");
 							say("reset by " + p.getName());
 						return true;
+						}
+						else{
+							p.sendMessage(nopermission_msg);
+							return true;
+						}
 					}
 					else{
-						p.sendMessage(nopermission_color + nopermission_msg);
-						return true;
+					    File configFile = new File(getDataFolder(), "config.yml");
+					    configFile.delete();
+					    saveDefaultConfig();
+					    System.out.println(debug_color + "[PerPlayerCommands] config reset");
+					    reload();
+					    System.out.println(debug_color + "[PerPlayerCommands] was reloaded");
+					    return true;
 					}
 				}
 				
 				// reload
 				if(args[0].equalsIgnoreCase("reload")){
-					if(p.hasPermission("ppc.reload")){
+					if(isplayer){
+						if(p.hasPermission("ppc.reload")){
 							reload();
 							p.sendMessage(debug_color + "[PerPlayerCommands] was reloaded");
 							say("reloaded by " + p.getName());
 						return true;
 					}
-					else{
-						p.sendMessage(nopermission_color + nopermission_msg);
-						return true;
+						else{
+							p.sendMessage(nopermission_msg);
+							return true;
+						}
 					}
+					else{
+						    reload();
+					    System.out.println("[PerPlayerCommands] was reloaded");
+						return true;
+				    }
 				}
 			}
-		}
-		
-		// commands from console
-		else{
-			System.out.println("[PerPlayerCommands] Command ingame only ... pm me if you need them ;)");
-			return true;
-		}
 		
 		// nothing to do here \o/
 		return false;
 	}
+	
 	
 	
     @EventHandler
@@ -148,19 +172,21 @@ public class Perplayercommand extends JavaPlugin implements Listener{
         	            				String message2 = "";
         	            				message2 = messagelist[i].replace("%playername%", p.getName());
         	            				message2 = message2.replace("%world%", p.getWorld().getName());
-        	                			p.sendMessage(msg_color + message2);
+        	            				message2 = ChatColor.translateAlternateColorCodes('&', message2);
+        	                			p.sendMessage(message2);
             						}
             				}
             				else{
 	            				String message2 = "";
 	            				message2 = message.replace("%playername%", p.getName());
 	            				message2 = message2.replace("%world%", p.getWorld().getName());
-	                			p.sendMessage(msg_color + message2);
+	            				message2 = ChatColor.translateAlternateColorCodes('&', message2);
+	                			p.sendMessage(message2);
             				}
             			}
             		}
             		else{
-            			 p.sendMessage(nopermission_color + nopermission_msg);
+            			 p.sendMessage(nopermission_msg);
             		}
         		e.setCancelled(true);
             }
@@ -182,11 +208,9 @@ public class Perplayercommand extends JavaPlugin implements Listener{
 		
 		debug = config.getBoolean("debug");
 		cmd = config.getString("custom-cmd");
-		defaultmsg = config.getString("default-msg");
-		nopermission_msg = config.getString("nopermission-msg");
+		defaultmsg = ChatColor.translateAlternateColorCodes('&', config.getString("default-msg"));
+		nopermission_msg = ChatColor.translateAlternateColorCodes('&', config.getString("nopermission-msg"));
 						
-		nopermission_color = ChatColor.valueOf(config.getString("nopermission-color"));
-		msg_color = ChatColor.valueOf(config.getString("msg-color"));
 		debug_color = ChatColor.valueOf(config.getString("debug-color"));
 	}
 	   
@@ -200,9 +224,7 @@ public class Perplayercommand extends JavaPlugin implements Listener{
 			    config = null;
 			    cmd = null;
 			    defaultmsg = null;
-			    nopermission_color = null;
 			    nopermission_msg = null;
-			    msg_color = null;
 			    debug_color = null;
 			    
 			// Run java garbage collector to delete unused things
