@@ -14,6 +14,7 @@ Updated:
  - now supporting commands from console
  - to reload ppc config simply use /ppc reload, you dont have to reload the whole server :/
 
+to use colorcodes simply write & infront of one of these:
 ![alt tag](http://societyandreligion.com/minecraft/wp-content/uploads/2013/06/Minecraft_Formatting.gif)
 
 ======
